@@ -54,9 +54,11 @@ userNameToTestFor='phoenix';
 if [[ "${userName}" = "${userNameToTestFor}" ]];
 then
     printf "\nYour username matches ${userNameToTestFor}\n";
+# Test for != for string
 elif [[ "${userName}" != "${userNameToTestFor}" ]];
 then
     printf "\nYour username does NOT match ${userNameToTestFor}\n";
 fi;
 
-# Test for != for string
+# Define exit code for this script
+exit 0;
