@@ -1,0 +1,64 @@
+# useradd [options] LOGIN
+# useradd -b, --base-dir BASE_DIR
+# The default base directory for sys if -d HOME_DIR is not specified
+# If this option is not specified, useradd will use base dir specified
+# by HOME variable in /etc/default/useradd OR /home by default
+
+# useradd -c, --comment COMMENT
+# Any text string, generally a short description of the login, and
+# is currently used as the field for user's full name
+
+# useradd -d, --home-dir HOME_DIR
+# The new user will be created using HOME_DIR as the value for the user's
+# login directory. Default is to append the LOGIN name to BASE_DIR & 
+
+# useradd -l, --no-log-init
+# Do NOT add the user to the lastlog & faillog databases
+# By default, the user's entries in the lastlog & faillog databases
+# are resetted to avoid reusing the entry from a previously deleted user
+
+# useradd -m, --create-home
+# Create the user's home directory if it does NOT exist.
+# The files & dir contained in the skeleton directory
+# (which can be defined with the -k option) will be copied to the home directory
+# By default, if this option is not specified & CREATE_HOME is not enabled,
+# no home directories are created.
+# The directory where the user's home directory is created must exist and
+# have proper SELinux context & permissions.
+# Otherwise, the user's home directory cannot be created OR accessed
+
+# useradd -M,--no-create-home
+
+# man useradd | less
+# /CONFIGURATION
+# CONFIGURATION
+#        The following configuration variables in /etc/login.defs change the behavior
+#        of this tool:
+
+#        CREATE_HOME (boolean)
+#            Indicate if a home directory should be created by default for new users.
+
+#            This setting does not apply to system users, and can be overridden on the
+#            command line.
+
+#        GID_MAX (number), GID_MIN (number)
+#            Range of group IDs used for the creation of regular groups by useradd,
+#            groupadd, or newusers.
+
+#            The default value for GID_MIN (resp.  GID_MAX) is 1000 (resp. 60000).
+
+#        HOME_MODE (number)
+#            The mode for new home directories. If not specified, the UMASK is used to
+#            create the mode.
+
+#            useradd and newusers use this to set the mode of the home directory they
+#            create.
+
+#        LASTLOG_UID_MAX (number)
+#            Highest user ID number for which the lastlog entries should be updated. As
+#            higher user IDs are usually tracked by remote user identity and
+#            authentication services there is no need to create a huge sparse lastlog
+#            file for them.
+
+#            No LASTLOG_UID_MAX option present in the configuration means that there is
+#            no user ID limit for writing lastlog entries.
