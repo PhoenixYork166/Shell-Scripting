@@ -9,7 +9,7 @@ UID_userName="Your UID is ${UID}\nYour username is: ${userName}";
 # If user provides <= 2 arguments => Error
 if [[ "${#}" -lt 2 ]];
     then
-        printf "\n\nYou must enter at least 2 inputs\nUsage:\nsudo bash ./addLocalUser-ver2.sh COMMENT USERNAME\n";
+        printf "\n\nYou must enter at least 2 inputs\nUsage:\nsudo bash ./addLocalUser-ver2.sh USERNAME COMMENT\n";
         exit 1;
 
 else
@@ -22,15 +22,17 @@ else
         # Creates a user account on local system
         # Runner will be prompted for account name & password
 
-        # Ask for real name or Ticket number in COMMENT
-        #read -p "Enter new user's real name: " COMMENT;
-        COMMENT=${1};
-
         # Ask for user's name
         # read -p => prompt for stdin => store in var "userName"
         #read -p "Enter new user's username: " userName;
         #printf "${userName}";
-        userName=${2};
+        userName=${1};
+
+        # Ask for real name or Ticket number in COMMENT
+        #read -p "Enter new user's real name: " COMMENT;
+        COMMENT=${2};
+
+        
 
         # Ask for password
         read -p "Enter new user's password: " password;
