@@ -32,8 +32,6 @@ else
         #read -p "Enter new user's real name: " COMMENT;
         COMMENT=${2};
 
-        
-
         # Ask for password
         read -p "Enter new user's password: " password;
 
