@@ -59,10 +59,10 @@ else
         # Check whether useradd command has run successfully
         if [[ ${?} -eq 0 ]];
         then
-            printf "\nuser account: ${userName}\nreal name: ${COMMENT}\nhas been successfully added...\nProceeding to create password for: ${userName}...";
+            printf "\nuser account: ${userName}\nreal name: ${COMMENT}\nhas been successfully added...\nProceeding to create a password for: ${userName}...";
         elif [[ ${?} -ne 0 ]];
         then
-            printf "\nCreation of user account: ${userName} has failed...Skipping...\n"
+            printf "\nCreation of user account: ${userName} has failed...\nSkipping...\n"
             exit 1;
         fi;
 
@@ -72,9 +72,11 @@ else
         echo "${userName}:${password}" | sudo chpasswd;
         if [[ ${?} -eq 0 ]];
         then
-            printf "\n${userName}'s password has been created successfully...Proceeding to expire ${userName}'s account on first logon...\n"
+            printf "\n${userName}'s password has been created successfully...\nProceeding to expire ${userName}'s account on first logon...\n"
         else
-            printf "\n${userName}'s password could NOT be created...\nMake sure you're root...\n"
+            # Alert runner that password could NOT be changed
+            printf "\n${userName}'s password could NOT be changed as planned..."
+            # Error code = 1
             exit 1;
         fi;
 
@@ -101,10 +103,12 @@ else
         # Define exit code == 0 if succeeded
         exit 0;
     
-
+    # If script runner is NOT root
     elif [[ "${UID}" -ne "${rootID}" ]];
     then
+        # Alert runner that they aren't root
         printf "${UID_userName}\nYou aren't root\nSkipping execution...\n"; 
+        # Error code = 1
         exit 1;
     fi;
     ##
